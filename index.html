@@ -6,21 +6,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Мои дела</title>
     <link rel="stylesheet" type="text/css" href="style.CSS" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=delete_forever" />
 </head>
 
 <body>
     <div class="main">
         <h1 class="header"> Список моих дел</h1>
         <div class="imput-area">
-            <input id="imput-task" placeholder="новая задача"/> 
+            <input id="imput-task" placeholder="новая задача" />
             <button id="add-btn">добавить</button>
         </div>
-        <ui>
-            <li><span>купить ботинки</span></li>
-            <li><span>купить куртку</span></li>
-            <li><span>спать</span></li>
-            <li><span>ничего не делать</span></li>
+        <ui class="task-list">
+            <li class="taskp">
+                <span class="">купить ботинки</span>
+                <div class="task-a">
+                    <button class="task-bth"><span class="material-symbols-outlined">
+                            delete_forever
+                        </span>
+                    </button>
+                </div>
+            </li>
+            <li class="taskp">
+                <span class="task-content"> купить куртку</span>
+                <div class="task-a">
+                    <button class="task-bth"><span class="material-symbols-outlined">
+                        delete_forever</button>
+                </div>
+            </li>
+            <li class="taskp">
+                <span class="task-content"> ничего не делать </span>
+                <div class="task-a">
+                    <button class="task-bth"><span class="material-symbols-outlined">
+                        delete_forever</button>
+                </div>
+            </li>
+            <li class="taskp">
+                <span class="task-content"> спать </span>
+                <div class="task-a">
+                    <button class="task-bth"><span class="material-symbols-outlined">
+                        delete_forever</button>
+                </div>
+            </li>
+            <li class="taskp">
+                <span class="task-content">проснуться</span>
+                <div class="task-a">
+                    <button class="task-bth"><span class="material-symbols-outlined">
+                        delete_forever</button>
+                </div>
+            </li>
         </ui>
+
 
 </body>
 
