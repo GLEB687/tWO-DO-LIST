@@ -132,3 +132,34 @@ body {
     width: 30px;
 }
 
+.HayP {
+    border-left: 8px solid rgb(198, 17, 17);
+}
+
+.HayM {
+    border-left: 8px solid rgb(169, 204, 11);
+}
+
+.HayL {
+    border-left: 8px solid rgb(55, 223, 39);
+}
+
+.taskp.complet {
+    background-color: rgb(229, 211, 211);
+    opacity: 0.6;
+    box-shadow: 0, 2px, 8px, rgba(146, 196, 186, 0.5);
+
+}
+
+.taskp.complet .task-content {
+    text-decoration: line-through;
+    color: rgb(12, 12, 12);
+}
+
+.task-list:not(:has(>*))::before {
+    content: "На этом все";
+    padding: 30px;
+    display: block;
+    font-style: italic;
+    text-align: center;
+}
