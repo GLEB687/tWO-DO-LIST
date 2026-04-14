@@ -1,27 +1,28 @@
+const KS = 'task-list'
+const taskStorage = {
+    save: (tasks) => {
+        const tasksAsAStr = JSON.stringify(tasks);
+        localStorage.setItem(KS, tasksAsAStr)
+    },
+    get: () => {
+        const o = localStorage.getItem(KS)
+        return JSON.parse(o)
+    },
+    init: () => {
+        if (localStorage.getItem(KS) === null) {
+            taskStorage.save([]);
+        }
+    }
+}
+
+taskStorage.init()
 const task = document.getElementById("task-list")
 const bt = document.getElementById("add-btn")
 const IT = document.getElementById("imput-task")
 bt.addEventListener("click", addT)
 
-let tap = [
-    {
-        title: 'ничего не делать',
-        priority: 'HayM',
-        isCompleted: false,
-    },
-    {
-        title: 'купить куртку',
-        priority: ' HayL',
-        isCompleted: false,
-    },
-];
-
-function start() {
-    console.log("привет");
-    alert("111111")
-}
-
-tap.forEach( x => createTaskElement(x))
+let tap = taskStorage.get();
+tap.forEach(task => createTaskElement(task))
 
 document.addEventListener('keydown',
     (ev) => {
@@ -33,6 +34,14 @@ document.addEventListener('keydown',
 function addT() {
     const TT = IT.value;
     if (TT) {
+        const Q = {
+            title: TT,
+            isCompleted: false,
+            priority: 'HayM'
+        }
+        createTaskElement(Q)
+        tap.push(Q)
+        taskStorage.save(tap)
 
         IT.value = ""
     }
@@ -41,7 +50,11 @@ function addT() {
 function createTaskElement(FFF) {
     const NT = document.createElement("li")
     NT.classList.add("taskp")
-    NT.classList.add("HayL")
+    NT.classList.add(FFF.priority)
+    if (FFF.isCompleted) {
+        NT.classList.add(`complet`)
+    }
+
     NT.addEventListener('click', (ev) => {
         ev.currentTarget.classList.toggle('complet');
     });
