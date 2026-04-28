@@ -55,17 +55,31 @@ function createTaskElement(FFF) {
         NT.classList.add(`complet`)
     }
 
-    NT.addEventListener('click', (ev) => {
-        ev.currentTarget.classList.toggle('complet');
-    });
+    
     NT.innerHTML = `
     <span class="task-content">${FFF.title}</span>
     <div class="task-a">
-        <button class="task-bth" onclick="this.parentNode.parentNode.remove()"><span
-                class="material-symbols-outlined">
+        <button class="task-bth">
+ <span class="material-symbols-outlined">
                 delete_forever
             </span>
         </button>
     </div>`
+
+    NT
+    .querySelector('button.task-bth')
+    .addEventListener('click', (ev) => {
+        ev.currentTarget.parentNode.parentNode.remove();
+        tap = tap.filter(x => x.title != FFF.title);
+        taskStorage.save(tap)
+    })
+
+    NT.addEventListener('click', (ev) => {
+        ev.currentTarget.classList.toggle('complet');
+        FFF.isCompleted = !FFF.isCompleted 
+        taskStorage.save(tap);
+    });
+
     task.append(NT)
 }
+
