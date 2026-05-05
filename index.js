@@ -55,31 +55,65 @@ function createTaskElement(FFF) {
         NT.classList.add(`complet`)
     }
 
-    
+
     NT.innerHTML = `
     <span class="task-content">${FFF.title}</span>
     <div class="task-a">
-        <button class="task-bth">
- <span class="material-symbols-outlined">
-                delete_forever
+        <button class="task-bth bthC">
+            <span class="material-symbols-outlined">
+            bubble 
+            </span>
+        </button>
+        <button class="task-bth bthD">
+            <span class="material-symbols-outlined">
+            delete_forever  
             </span>
         </button>
     </div>`
 
     NT
-    .querySelector('button.task-bth')
-    .addEventListener('click', (ev) => {
-        ev.currentTarget.parentNode.parentNode.remove();
-        tap = tap.filter(x => x.title != FFF.title);
-        taskStorage.save(tap)
-    })
+        .querySelector('button.bthD')
+        .addEventListener('click', (ev) => {
+            ev.currentTarget.parentNode.parentNode.remove();
+            tap = tap.filter(x => x.title != FFF.title);
+            taskStorage.save(tap)
+        })
 
     NT.addEventListener('click', (ev) => {
         ev.currentTarget.classList.toggle('complet');
-        FFF.isCompleted = !FFF.isCompleted 
+        FFF.isCompleted = !FFF.isCompleted
         taskStorage.save(tap);
     });
 
+    NT
+        .querySelector('button.bthC')
+        .addEventListener('click', (ev) => {
+            ev.preventDefault();
+            ev.stopPropagation()
+
+            const el = ev.currentTarget.parentNode.parentNode;
+            switch (FFF.priority) {
+                case 'HayL':
+                    FFF.priority = 'HayM'
+                    el.classList.remove('HayL');
+                    el.classList.add('HayM');
+                    break
+                case 'HayM':
+                    FFF.priority = 'HayP'
+                    el.classList.remove('HayM');
+                    el.classList.add('HayP');
+                    break
+                default:
+                    FFF.priority = 'HayL'
+                    el.classList.remove('HayP');
+                    el.classList.add('HayL');
+                    break
+            }
+            taskStorage.save(tap);
+
+        })
+
     task.append(NT)
+
 }
 
