@@ -37,7 +37,7 @@ function addT() {
         const Q = {
             title: TT,
             isCompleted: false,
-            priority: 'HayM'
+            priority: 'HayL'
         }
         createTaskElement(Q)
         tap.push(Q)
@@ -62,6 +62,11 @@ function createTaskElement(FFF) {
         <button class="task-bth bthC">
             <span class="material-symbols-outlined">
             bubble 
+            </span>
+        </button>
+        <button class="task-bth bthE">
+            <span class="material-symbols-outlined">
+            Edit
             </span>
         </button>
         <button class="task-bth bthD">
@@ -115,5 +120,19 @@ function createTaskElement(FFF) {
 
     task.append(NT)
 
+    NT
+    .querySelector('button.bthE')
+    .addEventListener('click', (ev) => {
+        ev.preventDefault();
+        ev.stopPropagation()
+        const NewTi = prompt('Изменить задачу', FFF.title);
+        if (NewTi.trim()) {
+        FFF.title = NewTi 
+        ev.currentTarget
+        .parentNode
+        .parentNode
+        .querySelector('span.task-content')
+        .innerText = NewTi
+        }
+    })
 }
-
